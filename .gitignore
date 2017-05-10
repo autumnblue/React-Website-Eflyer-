@@ -1,0 +1,32 @@
+*.dat
+*.iml
+*.log
+*.out
+*.pid
+*.seed
+*.sublime-*
+*.swo
+*.swp
+*.tgz
+*.svc
+*.pyc
+__pycache__
+*.sh
+.DS_Store
+.idea
+.project
+.strong-pm
+coverage
+node_modules
+npm-debug.log
+.sass-cache
+dist
+*.log.*
+dump.rdb
+
+client/public/index.html
+
+# ignore everything in client/public/app directory
+client/public/app/**
+### except .gitkeep
+!client/public/app/.gitkeep
