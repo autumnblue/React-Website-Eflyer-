@@ -20,11 +20,12 @@ var consts = require('../helpers/consts');
 /**
  * Initialize local variables
  */
-var initLocalVariables = function (app) {
-  // Passing the request url to environment locals
+var initLocalVariables = function (app, databases) {
+  app.db = databases;
   app.use(function (req, res, next) {
     res.locals.host = req.protocol + '://' + req.hostname;
     res.locals.url = req.protocol + '://' + req.headers.host + req.originalUrl;
+    req.db = databases;
     next();
   });
 };
@@ -36,8 +37,8 @@ var initMiddleware = function (app) {
   // Showing stack errors
   app.set('showStackError', true);
 
-  // Set timeout, shorter than Heroku web dyno's 30s request timeout
-  app.use(timeout('20s'));
+  // Set timeout
+  app.use(timeout(config.webServerTimeout));
 
   // Gzip-compression
   app.use(compression());
@@ -226,12 +227,12 @@ var handleErrors = function (app) {
 /**
  * Initialize the Express application
  */
-module.exports.init = function (db) {
+module.exports.init = function (databases) {
   // Initialize express app
   var app = express();
 
   // Initialize local variables
-  initLocalVariables(app);
+  initLocalVariables(app, databases);
 
   // Initialize Express middleware
   initMiddleware(app);

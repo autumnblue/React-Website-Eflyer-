@@ -26,6 +26,8 @@ module.exports = {
   sessionKey: 'sessionId',
   sessionCollection: 'sessions',
 
+  webServerTimeout: '20s',
+
   jwt: {
     secret: process.env.EFLYER_JWT_SECRET || 'E-Flyer',
     expiresIn: 24 * 60 * 60, // 24 hours in seconds

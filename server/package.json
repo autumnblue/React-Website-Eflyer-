@@ -43,9 +43,12 @@
     "minimist": "^1.2.0",
     "moment": "^2.17.1",
     "morgan": "^1.7.0",
+    "mysql": "^2.13.0",
     "request": "^2.81.0",
     "require-dir": "^0.3.1",
     "rootpath": "^0.1.2",
+    "sequelize": "^3.30.4",
+    "sequelize-cli": "^2.7.0",
     "throng": "^4.0.0",
     "winston": "^2.3.1",
     "winston-daily-rotate-file": "^1.4.3"

@@ -6,6 +6,7 @@ if (!process.env.NODE_ENV) {
 
 var throng = require('throng');
 var config = require('./config/config');
+var db = require('./core/db');
 var express = require('./core/express');
 var chalk = require('chalk');
 var logger = require('./helpers/logger');
@@ -15,9 +16,11 @@ var logger = require('./helpers/logger');
 // Initialize Express
 // -----------------------------------------------------------------------------
 function init(callback) {
-  // Initialize express
-  var app = express.init();
-  if (callback) callback(app, config);
+  db.connect(function(databases) {
+    // Initialize express
+    var app = express.init(databases);
+    if (callback) callback(app, config);
+  });
 }
 
 function start(workerId, callback) {
@@ -30,6 +33,7 @@ function start(workerId, callback) {
       // Logging initialization
       (!workerId || workerId === 1) && logger.info(chalk.green(
         "\n ------------------------------------------------------\r\n",
+        "Databases connected" + "\n",
         "The server is running at " + config.host + "/\n",
         "Environment:\t\t" + process.env.NODE_ENV + "\n",
         "Port:\t\t\t" + config.port + "\n",
