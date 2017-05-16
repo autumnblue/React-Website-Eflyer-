@@ -24,9 +24,7 @@ dist
 *.log.*
 dump.rdb
 
-client/public/index.html
-
-# ignore everything in client/public/app directory
-client/public/app/**
+# ignore everything in client/public directory
+client/public/**
 ### except .gitkeep
-!client/public/app/.gitkeep
+!client/public/.gitkeep

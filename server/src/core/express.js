@@ -77,23 +77,6 @@ var initSession = function (app) {
   }));
 };
 
-// TODO: remove when publishing to live
-function devUser(role) {
-  return {
-    "id" : 1,
-    "firstname" : "John",
-    "lastname" : "Doe",
-    "email" : "john.doe@email.com",
-    "phone" : "1234567890",
-    "username" : "john",
-    "created" : "2017-05-09T00:00:00.000+0000",
-    "enabled" : true,
-    "roles" : [
-      role
-    ]
-  };
-}
-
 /**
  * Configure Express JWT
  */
@@ -113,29 +96,16 @@ var initJWT = function (app) {
       // TODO: remove when publishing to live
       if (process.env.NODE_ENV !== 'production') {
         if (req.query.devtoken === 'eflyer2017user') {
-          return authHelper.generateToken(authHelper.serializeUser(devUser(consts.USER_ROLE.USER)));
+          return authHelper.generateToken(authHelper.serializeUser(authHelper.devUser(consts.USER_ROLE.USER)));
         }
         if (req.query.devtoken === 'eflyer2017admin') {
-          return authHelper.generateToken(authHelper.serializeUser(devUser(consts.USER_ROLE.ADMIN)));
+          return authHelper.generateToken(authHelper.serializeUser(authHelper.devUser(consts.USER_ROLE.ADMIN)));
         }
       }
 
       return null;
     }
   }));
-};
-
-/**
- * Initialize middleware to authenticate from PHP session
- */
-var initPHPAuthMiddleware = function (app) {
-  app.use(function (req, res, next) {
-    if (!req.user) {
-      // TODO: Import PHP session and get user object using it
-      req.user = devUser(consts.USER_ROLE.USER); // temporary
-    }
-    return next();
-  });
 };
 
 /**
@@ -221,7 +191,7 @@ var handleErrors = function (app) {
     if(err.code === 'ENOENT') { err.message = 'File not found'; }
     errorHelper.handleError(res, err, err.status || 500);
   });
-}
+};
 
 
 /**
@@ -242,9 +212,6 @@ module.exports.init = function (databases) {
 
   // Initialize Express JWT
   initJWT(app);
-
-  // Initialize middleware to authenticate from PHP session
-  initPHPAuthMiddleware(app);
 
   // Initialize Helmet security headers
   initHelmetHeaders(app);

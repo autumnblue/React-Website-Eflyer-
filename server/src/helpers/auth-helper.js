@@ -48,8 +48,7 @@ exports.checkAuth = function (permissions, allowDisabled) {
 
 exports.serializeUser = function (user) {
   // Remove sensitive data
-  var userData = _.pick(user, ['id', 'firstname', 'lastname', 'email', 'phone', 'username', 'roles',
-    'enabled', 'created', 'updated']);
+  var userData = _.pick(user, ['id', 'memberId', 'locationId', 'contact', 'email', 'roles', 'enabled']);
 
   userData._id = String(userData._id);
 
@@ -62,7 +61,7 @@ exports.generateToken = function (user) {
     config.jwt.secret,
     { expiresIn: config.jwt.expiresIn }
   );
-}
+};
 
 exports.setTokenCookie = function (res, token) {
   res.cookie(config.jwt.cookieName, token, {
@@ -70,4 +69,19 @@ exports.setTokenCookie = function (res, token) {
     secure: process.env.NODE_ENV === 'production',
     httpOnly: process.env.NODE_ENV === 'production',
   });
-}
+};
+
+// TODO: remove when publishing to live
+exports.devUser = function (role) {
+  return {
+    "id" : 1,
+    "memberId" : 1,
+    "locationId" : 1,
+    "contact" : "John Smith",
+    "email" : "johnsmith@membersite.com",
+    "roles" : [
+      role
+    ],
+    "enabled" : true
+  };
+};
