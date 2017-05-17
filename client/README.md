@@ -3,22 +3,28 @@
 
 ### Development
 
-- **Run the client app with express and http for local development (HMR)**
+- **Run the client app with webpack-dev-server and hot reloading**
 
 ```
 $ npm start
 ```
 
+- **Run the client app with express and http for local development (HMR)**
+
+```
+$ npm run serve-dev
+```
+
 - **You can run in specific port and hostname.**
 
 ```
-$ npm start -- --port 6001 --host 192.168.0.1
+$ npm run serve-dev -- --port 6001 --host 192.168.0.1
 ```
 
 - **You can simulate production environment.**
 
 ```
-$ npm run start-prod
+$ npm run serve-prod
 ```
 
 - **Build the client app in development environment**

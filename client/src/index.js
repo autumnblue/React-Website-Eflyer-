@@ -36,7 +36,7 @@ const render = (Component) => {
         <Component history={history} />
       </Provider>
     </AppContainer>,
-    document.getElementById('app')
+    document.getElementById('react-app')
   );
 };
 

@@ -1,11 +1,20 @@
-#loading-page {
+#page-loading {
 
   .contents {
-    padding-top: 100px;
+    padding-top: 50px;
     text-align: center;
 
+    .logo {
+      img {
+        height: 70px;
+      }
+    }
+
     .spinner {
-      margin-top: 50px;
+      width: 300px !important;
+      height: 300px !important;;
+      fill: $color-primary !important;;
+      margin: 50px auto;
     }
   }
 

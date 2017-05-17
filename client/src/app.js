@@ -7,8 +7,7 @@ const App = ({ history, checkUserApi }) => {
   return checkUserApi.status === consts.API_LOADING ?
     <LoadingScreen />
     :
-    <LoadingScreen />;
-  // <Routes history={history} />;
+    <Routes history={history} />;
 };
 
 const mapStateToProps = (state) => ({

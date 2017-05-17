@@ -5,7 +5,7 @@ export default function (nextState, replace) {
 
   if (!state.auth.user) {
     replace({
-      pathname: '/login',
+      pathname: '/login-required',
       state: { redirect: nextState.location.pathname + nextState.location.search }
     });
     return false;

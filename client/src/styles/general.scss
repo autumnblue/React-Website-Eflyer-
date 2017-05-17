@@ -3,6 +3,13 @@
   min-height: 100vh;
   padding-bottom: $footer-height;
   position: relative;
+  &:before, &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
 }
 
 .footer {
@@ -10,7 +17,25 @@
   bottom: 0;
   width: 100%;
   height: $footer-height;
+  background-color: $footer-bgcolor;
   .copyright {
     text-align: center;
+    line-height: $footer-height;
+    font-size: 14px;
+    color: $text-color-inverse;
+    -webkit-box-shadow: 0 0 5px 0 #888;
+    -moz-box-shadow: 0 0 5px 0 #888;
+    box-shadow: 0 0 5px 0 #888;
+  }
+}
+
+#react-app {
+  background-color: $app-bg-color;
+  color: $text-color;
+  a {
+    color: $color-link;
+    &:hover, &:active {
+      color: $color-link-active;
+    }
   }
 }
