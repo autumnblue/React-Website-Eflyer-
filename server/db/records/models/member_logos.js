@@ -1,39 +1,43 @@
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('Member', {
+  return sequelize.define('MemberLogo', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
-      field: 'id'
+      autoIncrement: true
     },
-    member: {
-      type: DataTypes.STRING,
+    memberId: {
+      type: DataTypes.INTEGER,
       allowNull: true,
-      defaultNull: null,
-      unique: true,
-      field: 'Member'
+      defaultValue: null,
+      field: 'MemberID'
     },
-    country: {
+    largeCLR: {
       type: DataTypes.STRING,
       allowNull: true,
       defaultValue: null,
-      field: 'Country'
+      field: 'LargeCLR'
     },
-    website: {
+    largeGRY: {
       type: DataTypes.STRING,
       allowNull: true,
       defaultValue: null,
-      field: 'website'
+      field: 'LargeGRY'
     },
-    industry: {
+    largeBLK: {
       type: DataTypes.STRING,
       allowNull: true,
       defaultValue: null,
-      field: 'Industry'
+      field: 'LargeBLK'
+    },
+    largeREV: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: null,
+      field: 'LargeREV'
     }
   }, {
-    tableName: 'members',
+    tableName: 'member_locations',
     timestamps: false,
     freezeTableName: true
   })

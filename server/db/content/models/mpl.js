@@ -34,5 +34,5 @@ module.exports = function(sequelize, DataTypes) {
     tableName: 'mpl',
     timestamps: false,
     freezeTableName: true
-  })
+  });
 };
