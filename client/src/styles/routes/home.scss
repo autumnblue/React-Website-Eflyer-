@@ -1,0 +1,42 @@
+#page-home {
+  .contents {
+    min-height: 100%;
+  }
+  .home-action {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: 400px;
+    max-width: 90%;
+    height: 80px;
+    line-height: 80px;
+    font-size: 2rem;
+    text-align: center;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    &#use-previous-flyer {
+      top: calc(50% - 100px);
+      background: $use-previous-flyer-button-bgcolor;
+      color: $use-previous-flyer-button-txtcolor;
+      &:hover {
+        background: $use-previous-flyer-button-bgcolor-hover;
+      }
+    }
+    &#create-new-flyer {
+      top: 50%;
+      background: $create-new-flyer-button-bgcolor;
+      color: $create-new-flyer-button-txtcolor;
+      &:hover {
+        background: $create-new-flyer-button-bgcolor-hover;
+      }
+    }
+  }
+}

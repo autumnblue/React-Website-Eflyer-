@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Routes from './routes';
-import LoadingScreen from './components/common/LoadingScreen';
+import LoadingScreen from './routes/public-pages/LoadingScreen';
 
 const App = ({ history, checkUserApi }) => {
   return checkUserApi.status === consts.API_LOADING ?

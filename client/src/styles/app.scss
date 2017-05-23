@@ -1,8 +1,11 @@
 @import "variables";
 @import "base";
 @import "general";
+@import "layout";
 @import "fonts";
 
-@import "components/common";
+@import "components/left-panel";
 
 @import "routes/public-pages";
+@import "routes/home";
+@import "routes/design";

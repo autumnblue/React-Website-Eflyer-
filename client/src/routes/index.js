@@ -6,6 +6,7 @@ import requireAuth from './require-auth';
 import AppLayout from '../components/layout/AppLayout';
 import BasePage from '../components/layout/BasePage';
 import Home from './home/Home';
+import Design from './design/Design';
 import LoginRequired from './public-pages/LoginRequired';
 import SessionExpired from './public-pages/SessionExpired';
 import NotFound from './public-pages/NotFound';
@@ -18,6 +19,7 @@ const routes = (
       <IndexRedirect to="home" />
 
       <Route path="home" component={Home}/>
+      <Route path="design" component={Design}/>
 
     </Route>
 
