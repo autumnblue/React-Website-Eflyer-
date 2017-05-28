@@ -1,10 +1,11 @@
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('MemberAboutUs', {
+  return sequelize.define('MemberDescription', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
+      id: 'id'
     },
     memberId: {
       type: DataTypes.INTEGER,

@@ -19,7 +19,11 @@ module.exports = function initialize() {
     }
   });
 
-  // TODO: Configure relations/associations
+  // relations/associations
+  models.MemberContact.belongsTo(models.Member, { foreignKey: 'memberId' });
+  models.MemberContact.belongsTo(models.MemberLocation, { foreignKey: 'locationId' });
+  models.MemberContact.hasOne(models.MemberDescription, { foreignKey: 'memberId', targetKey: 'memberId' });
+  models.MemberContact.hasOne(models.MemberLogo, { foreignKey: 'memberId', targetKey: 'memberId' });
 
   return db;
 }

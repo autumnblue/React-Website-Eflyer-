@@ -19,7 +19,16 @@ module.exports = function initialize() {
     }
   });
 
-  // TODO: Configure relations/associations
+  // relations/associations
+  models.Product.hasOne(models.ProductName, { foreignKey: 'partNum', as: 'name' });
+  models.Product.hasOne(models.ProductDescription, { foreignKey: 'partNum', as: 'description' });
+  models.Product.hasOne(models.ProductPrice, { foreignKey: 'partNum', as: 'price' });
+  models.Product.hasOne(models.ProductCategory, { foreignKey: 'partNum', as: 'category' });
+
+  models.Flyer.hasMany(models.FlyerProduct, { foreignKey: 'flyerId', as: 'products' });
+  models.FlyerProduct.belongsTo(models.Flyer, { foreignKey: 'flyerId' });
+  models.Flyer.hasOne(models.CompanyInfoUpdate, { foreignKey: 'flyerId' });
+  models.CompanyInfoUpdate.belongsTo(models.Flyer, { foreignKey: 'flyerId' });
 
   return db;
 }

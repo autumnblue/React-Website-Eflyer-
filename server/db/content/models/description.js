@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('Description', {
+  return sequelize.define('ProductDescription', {
     partNum: {
       type: DataTypes.STRING,
       allowNull: false,

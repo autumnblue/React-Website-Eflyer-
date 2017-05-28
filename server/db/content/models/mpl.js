@@ -1,12 +1,12 @@
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('Mpl', {
+  return sequelize.define('Product', {
     partNum: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      primary: true,
       field: 'partnum'
     },
-    supplierID: {
+    supplierId: {
       type: DataTypes.INTEGER,
       allowNull: true,
       defaultValue: null,
