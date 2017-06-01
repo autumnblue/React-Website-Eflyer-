@@ -7,12 +7,12 @@ module.exports = function(sequelize, DataTypes) {
       autoIncrement: true,
       field: 'id'
     },
-    member: {
+    name: {
       type: DataTypes.STRING,
       allowNull: true,
       defaultNull: null,
       unique: true,
-      field: 'Member'
+      field: 'Supplier'
     }
   }, {
     tableName: 'suppliers',

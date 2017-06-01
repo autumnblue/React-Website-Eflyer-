@@ -50,7 +50,7 @@ function start(workerId, callback) {
  * Starting web server with clusters
  * When serving client application with webpack-dev-middleware, force to run a single worker
  */
-var webConcurrency = process.argv.indexOf('--dev') === -1 ? config.webConcurrency : 1;
+var webConcurrency = process.env.NODE_ENV !== 'development' && process.argv.indexOf('--dev') === -1 ? config.webConcurrency : 1;
 throng({
   workers: webConcurrency,
 

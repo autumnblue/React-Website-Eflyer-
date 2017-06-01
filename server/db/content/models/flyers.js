@@ -47,10 +47,30 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true,
       field: 'company_name'
     },
-    companyAddress: {
+    companyAddressStreet: {
       type: DataTypes.STRING,
       allowNull: true,
-      field: 'company_address'
+      field: 'company_address_street'
+    },
+    companyAddressCity: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      field: 'company_address_city'
+    },
+    companyAddressState: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      field: 'company_address_state'
+    },
+    companyAddressCountry: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      field: 'company_address_country'
+    },
+    companyAddressZip: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      field: 'company_address_zip'
     },
     companyPhone: {
       type: DataTypes.STRING,
@@ -120,13 +140,12 @@ module.exports = function(sequelize, DataTypes) {
     approvedAt: {
       type: DataTypes.DATE,
       allowNull: true,
-      defaultValue: null,
       field: 'approved_at'
     }
   }, {
     tableName: 'flyers',
     freezeTableName: true,
     timestamps: true,
-    understored: true
+    underscored: true
   });
 };

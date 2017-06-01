@@ -20,10 +20,10 @@ module.exports = function initialize() {
   });
 
   // relations/associations
-  models.MemberContact.belongsTo(models.Member, { foreignKey: 'memberId' });
-  models.MemberContact.belongsTo(models.MemberLocation, { foreignKey: 'locationId' });
-  models.MemberContact.hasOne(models.MemberDescription, { foreignKey: 'memberId', targetKey: 'memberId' });
-  models.MemberContact.hasOne(models.MemberLogo, { foreignKey: 'memberId', targetKey: 'memberId' });
+  db.models.MemberContact.belongsTo(db.models.Member, { foreignKey: 'memberId' });
+  db.models.MemberContact.belongsTo(db.models.MemberLocation, { foreignKey: 'locationId' });
+  db.models.MemberContact.hasOne(db.models.MemberDescription, { foreignKey: 'memberId', targetKey: 'memberId' });
+  db.models.MemberContact.hasOne(db.models.MemberLogo, { foreignKey: 'memberId', targetKey: 'memberId' });
 
   return db;
 }

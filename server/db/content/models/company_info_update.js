@@ -19,6 +19,6 @@ module.exports = function(sequelize, DataTypes) {
     tableName: 'company_info_update',
     freezeTableName: true,
     timestamps: true,
-    understored: true
+    underscored: true
   });
 };

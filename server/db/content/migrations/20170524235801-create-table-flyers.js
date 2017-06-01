@@ -42,7 +42,23 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true
       },
-      company_address: {
+      company_address_street: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      company_address_city: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      company_address_state: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      company_address_country: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      company_address_zip: {
         type: Sequelize.STRING,
         allowNull: true
       },

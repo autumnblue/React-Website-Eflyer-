@@ -35,6 +35,7 @@ module.exports = {
       },
       featured: {
         type: Sequelize.BOOLEAN,
+        allowNull: false,
         defaultValue: false
       },
       special_note: {

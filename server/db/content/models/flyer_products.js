@@ -39,6 +39,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     featured: {
       type: DataTypes.BOOLEAN,
+      allowNull: false,
       defaultValue: false,
       field: 'featured'
     },
@@ -56,6 +57,6 @@ module.exports = function(sequelize, DataTypes) {
     tableName: 'flyer_products',
     freezeTableName: true,
     timestamps: true,
-    understored: true
+    underscored: true
   });
 };

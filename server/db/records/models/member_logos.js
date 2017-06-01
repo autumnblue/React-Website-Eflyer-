@@ -38,7 +38,7 @@ module.exports = function(sequelize, DataTypes) {
       field: 'LargeREV'
     }
   }, {
-    tableName: 'member_locations',
+    tableName: 'member_logos',
     timestamps: false,
     freezeTableName: true
   })

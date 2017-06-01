@@ -5,8 +5,8 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "node src/index.js --dev",
-    "watch": "nodemon --watch src src/index.js",
-    "api": "nodemon --watch src src/index.js --api-only",
+    "watch": "nodemon --watch src --watch db src/index.js",
+    "api": "nodemon --watch src src/index.js --watch db --api-only",
     "eslint": "eslint **/*"
   },
   "author": "GM",

@@ -20,15 +20,15 @@ module.exports = function initialize() {
   });
 
   // relations/associations
-  models.Product.hasOne(models.ProductName, { foreignKey: 'partNum', as: 'name' });
-  models.Product.hasOne(models.ProductDescription, { foreignKey: 'partNum', as: 'description' });
-  models.Product.hasOne(models.ProductPrice, { foreignKey: 'partNum', as: 'price' });
-  models.Product.hasOne(models.ProductCategory, { foreignKey: 'partNum', as: 'category' });
+  db.models.Product.hasOne(db.models.ProductName, { foreignKey: 'partNum', as: 'name' });
+  db.models.Product.hasOne(db.models.ProductDescription, { foreignKey: 'partNum', as: 'description' });
+  db.models.Product.hasOne(db.models.ProductPrice, { foreignKey: 'partNum', as: 'price' });
+  db.models.Product.hasOne(db.models.ProductCategory, { foreignKey: 'partNum', as: 'category' });
 
-  models.Flyer.hasMany(models.FlyerProduct, { foreignKey: 'flyerId', as: 'products' });
-  models.FlyerProduct.belongsTo(models.Flyer, { foreignKey: 'flyerId' });
-  models.Flyer.hasOne(models.CompanyInfoUpdate, { foreignKey: 'flyerId' });
-  models.CompanyInfoUpdate.belongsTo(models.Flyer, { foreignKey: 'flyerId' });
+  db.models.Flyer.hasMany(db.models.FlyerProduct, { foreignKey: 'flyerId', as: 'products' });
+  db.models.FlyerProduct.belongsTo(db.models.Flyer, { foreignKey: 'flyerId', as: 'flyer' });
+  db.models.Flyer.hasOne(db.models.CompanyInfoUpdate, { foreignKey: 'flyerId' });
+  db.models.CompanyInfoUpdate.belongsTo(db.models.Flyer, { foreignKey: 'flyerId', as: 'flyer' });
 
   return db;
 }

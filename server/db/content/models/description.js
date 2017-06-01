@@ -3,6 +3,7 @@ module.exports = function(sequelize, DataTypes) {
     partNum: {
       type: DataTypes.STRING,
       allowNull: false,
+      primaryKey: true,
       field: 'partnum'
     },
     description: {
