@@ -2,7 +2,9 @@
 
 window.jQuery = window.$ = require('jquery');
 require('jquery-ui-npm/jquery-ui.min.js');
+require('jquery-validation');
 require('bootstrap');
+require('./jquery-extension');
 
 window.moment = require('moment');
 window._ = require('lodash');

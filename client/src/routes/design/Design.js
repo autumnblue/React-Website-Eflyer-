@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { LeftPanel, Accordion, Section } from '../../components/left-panel';
+import { LeftPanel, Accordion, Section } from 'components/left-panel';
 
 export default class Home extends Component {
 

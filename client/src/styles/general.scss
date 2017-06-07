@@ -13,3 +13,14 @@
 body {
   font-size: $body-font-size !important;
 }
+
+form {
+  input.invalid, select.invalid {
+    color: #a90329 !important;
+    background-color: #ffddee !important;
+  }
+}
+
+.modal-body {
+  font-size: 14px;
+}
