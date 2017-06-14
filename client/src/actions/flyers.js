@@ -83,9 +83,28 @@ export function saveFlyer(data, successRedirect) {
  */
 export const UI_CHANGE_FLYER = 'UI_CHANGE_FLYER';
 
-export function changeFlyer(change) {
+export function uiChangeFlyer(change) {
   return {
     type: UI_CHANGE_FLYER,
     change
+  };
+}
+
+// ======================================================================================
+/**
+ * Step 1 - USE PREVIOUS FLYER / CREATE NEW FLYER action
+ */
+export const UI_USE_PREVIOUS_FLYER = 'UI_USE_PREVIOUS_FLYER';
+export const UI_CREATE_NEW_FLYER = 'UI_CREATE_NEW_FLYER';
+
+export function uiUsePreviousFlyer() {
+  return {
+    type: UI_USE_PREVIOUS_FLYER
+  };
+}
+
+export function uiCreateNewFlyer() {
+  return {
+    type: UI_CREATE_NEW_FLYER
   };
 }

@@ -26,15 +26,15 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      cover: {
+      theme: {
         type: Sequelize.STRING,
         allowNull: true
       },
-      interior: {
+      front_cover: {
         type: Sequelize.STRING,
         allowNull: true
       },
-      text_color_rgb: {
+      inside_cover: {
         type: Sequelize.STRING,
         allowNull: true
       },

@@ -55,6 +55,21 @@ const Storage = {
       return null;
     }
   },
+
+  saveStep1Action(step1Action) {
+    try {
+      storage.setItem('step1Action', step1Action);
+    } catch (error) {
+      return null;
+    }
+  },
+  loadStep1Action() {
+    try {
+      return storage.getItem('step1Action');
+    } catch (error) {
+      return null;
+    }
+  }
 };
 
 if (!Storage.isSupported()) {

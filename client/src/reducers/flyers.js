@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import ActionTypes from '../actions';
 import { createApiReducer } from '../helpers/utils';
+import Storage from '../helpers/storage';
 
 /**
  * Reducer to loadFlyer API status, created using generator
@@ -69,6 +70,22 @@ export const form = (state = {}, action) => {
   }
 };
 
+/**
+ * Reducer to remember whether USE PREVIOUS FLYER or CREATE NEW FLYER was selected
+ */
+export const step1Action = (state = Storage.loadStep1Action(), action) => {
+  switch (action.type) {
+    case ActionTypes.UI_USE_PREVIOUS_FLYER:
+      Storage.saveStep1Action('USE_PREVIOUS_FLYER');
+      return 'USE_PREVIOUS_FLYER';
+    case ActionTypes.UI_CREATE_NEW_FLYER:
+      Storage.saveStep1Action('CREATE_NEW_FLYER');
+      return 'CREATE_NEW_FLYER';
+    default:
+      return state;
+  }
+};
+
 export default {
   flyers: combineReducers({
     loadFlyerApi,
@@ -76,6 +93,7 @@ export default {
     saveFlyerApi,
     autosave,
     changed,
-    form
+    form,
+    step1Action
   })
 };

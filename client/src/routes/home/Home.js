@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { LeftPanel, Accordion, Section } from 'components/left-panel';
 import { loadCompany } from 'actions/company';
-import { loadFlyer, changeFlyer, saveFlyer, createFlyer } from 'actions/flyers';
+import { loadFlyer, uiChangeFlyer, saveFlyer, createFlyer, uiUsePreviousFlyer, uiCreateNewFlyer } from 'actions/flyers';
 import UiValidate from 'components/forms/UIValidate';
 import ConfirmBox from 'components/modals/ConfirmBox';
 
@@ -31,7 +31,7 @@ class Home extends Component {
 
   onFieldChange(e) {
     const field = $(e.currentTarget).data('field');
-    this.props.dispatch(changeFlyer({ [field]: e.currentTarget.value }));
+    this.props.dispatch(uiChangeFlyer({ [field]: e.currentTarget.value }));
   }
 
   onUsePreviousClick() {
@@ -47,7 +47,10 @@ class Home extends Component {
         contactName: $('#contact-info-form #contactName').val(),
         contactEmail: $('#contact-info-form #contactEmail').val(),
         contactPhone: $('#contact-info-form #contactPhone').val()
-      }, '/design'));
+      }, '/design'))
+      .then(() => {
+        dispatch(uiUsePreviousFlyer());
+      });
     }
   }
 
@@ -76,11 +79,16 @@ class Home extends Component {
   }
 
   createNewFlyer() {
-    this.props.dispatch(createFlyer({
+    const { dispatch } = this.props;
+
+    dispatch(createFlyer({
       contactName: $('#contact-info-form #contactName').val(),
       contactEmail: $('#contact-info-form #contactEmail').val(),
       contactPhone: $('#contact-info-form #contactPhone').val()
-    }, '/design'));
+    }, '/design'))
+    .then(() => {
+      dispatch(uiCreateNewFlyer());
+    });
   }
 
   render() {

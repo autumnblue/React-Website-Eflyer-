@@ -7,21 +7,21 @@ module.exports = {
     ADMIN: 'ADMIN',
   },
 
-  FLYER_COVER_IMAGES: [
-    { title: 'Default', url: '/img/demo/cover_default.jpg' },
-    { title: 'Professional', url: '/img/demo/cover_professional.jpg' },
-    { title: 'Luxury', url: '/img/demo/cover_luxury.png' }
+  FLYER_FRONT_COVERS: [
+    { title: 'Default', imgURL: '/img/demo/front-covers/default_[theme].jpg', thumbnail: '/img/demo/front-covers/default_thumb.jpg' },
+    { title: 'Professional', imgURL: '/img/demo/front-covers/professional_[theme].jpg', thumbnail: '/img/demo/front-covers/professional_thumb.jpg' },
+    { title: 'Nature', imgURL: '/img/demo/front-covers/nature_[theme].png', thumbnail: '/img/demo/front-covers/nature_thumb.png' }
   ],
-  FLYER_INTERIOR_IMAGES: [
-    { title: 'Default', url: '/img/demo/interior.jpg' },
-    { title: 'Dark', url: '/img/demo/interior_dark.jpg' },
-    { title: 'Bright', url: '/img/demo/interior_bright.jpg' }
+  FLYER_INSIDE_COVERS: [
+    { title: 'Default', imgURL: '/img/demo/inside-covers/default_[theme].jpg', thumbnail: '/img/demo/inside-covers/default_thumb.jpg' },
+    { title: 'Luxury', imgURL: '/img/demo/inside-covers/luxury_[theme].png', thumbnail: '/img/demo/inside-covers/luxury_thumb.png' },
+    { title: 'Sky', imgURL: '/img/demo/inside-covers/sky_[theme].jpg', thumbnail: '/img/demo/inside-covers/sky_thumb.jpg' }
   ],
-  FLYER_COLORS_SELECTIONS: [
-    { title: 'black', rgb: '#333' },
-    { title: 'magenta', rgb: '#ca1f7b' },
-    { title: 'cyan', rgb: '#28589c' },
-    { title: 'green', rgb: '#056608' }
+  FLYER_THEMES: [
+    { title: 'black', color: '#333' },
+    { title: 'magenta', color: '#ca1f7b' },
+    { title: 'cyan', color: '#28589c' },
+    { title: 'green', color: '#056608' }
   ],
 
 }

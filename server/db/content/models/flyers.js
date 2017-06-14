@@ -27,20 +27,20 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       field: 'contact_phone'
     },
-    cover: {
+    theme: {
       type: DataTypes.STRING,
       allowNull: true,
-      field: 'cover'
+      field: 'theme'
     },
-    interior: {
+    frontCover: {
       type: DataTypes.STRING,
       allowNull: true,
-      field: 'interior'
+      field: 'front_cover'
     },
-    textColorRGB: {
+    insideCover: {
       type: DataTypes.STRING,
       allowNull: true,
-      field: 'text_color_rgb'
+      field: 'inside_cover'
     },
     companyName: {
       type: DataTypes.STRING,

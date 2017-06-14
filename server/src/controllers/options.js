@@ -1,13 +1,13 @@
 var consts = require('../helpers/consts');
 
-exports.getCoverImages = function (req, res, next) {
-  res.json(consts.FLYER_COVER_IMAGES);
+exports.getThemes = function (req, res, next) {
+  res.json(consts.FLYER_THEMES);
 };
 
-exports.getInteriorImages = function (req, res, next) {
-  res.json(consts.FLYER_INTERIOR_IMAGES);
+exports.getFrontCovers = function (req, res, next) {
+  res.json(consts.FLYER_FRONT_COVERS);
 };
 
-exports.getColorSelections = function (req, res, next) {
-  res.json(consts.FLYER_COLORS_SELECTIONS);
+exports.getInsideCovers = function (req, res, next) {
+  res.json(consts.FLYER_INSIDE_COVERS);
 };
