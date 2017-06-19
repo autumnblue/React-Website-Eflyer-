@@ -24,9 +24,9 @@ class Home extends Component {
   }
 
   componentWillMount() {
-    const {companyInfo, autosave} = this.props;
-    companyInfo || this.props.dispatch(loadCompany());
-    autosave || this.props.dispatch(loadFlyer());
+    const {dispatch, companyInfo, autosave} = this.props;
+    companyInfo || dispatch(loadCompany());
+    autosave || dispatch(loadFlyer());
   }
 
   onFieldChange(e) {
@@ -92,11 +92,11 @@ class Home extends Component {
   }
 
   render() {
-    const {loadCompanyApi, autosave, form, createFlyerApi, saveFlyerApi} = this.props;
+    const {companyInfo, autosave, form, createFlyerApi, saveFlyerApi} = this.props;
 
-    const contactName = typeof form.contactName === 'string' ? form.contactName : _.get(loadCompanyApi, 'contact', '');
-    const contactEmail = typeof form.contactEmail === 'string' ? form.contactEmail : _.get(loadCompanyApi, 'email', '');
-    const contactPhone = typeof form.contactPhone === 'string' ? form.contactPhone : _.get(loadCompanyApi, 'MemberLocation.phone', '');
+    const contactName = typeof form.contactName === 'string' ? form.contactName : _.get(companyInfo, 'contact', '');
+    const contactEmail = typeof form.contactEmail === 'string' ? form.contactEmail : _.get(companyInfo, 'email', '');
+    const contactPhone = typeof form.contactPhone === 'string' ? form.contactPhone : _.get(companyInfo, 'MemberLocation.phone', '');
 
     return (
       <div id="page-home" className="page responsive animated fadeIn">
@@ -106,17 +106,17 @@ class Home extends Component {
               <UiValidate>
                 <form id="contact-info-form">
                   <div className="form-group">
-                    <input className="form-control" id="contactName" name="contactName" placeholder="Contact Name"
+                    <input className="form-control" id="contactName" name="contactName" placeholder="Contact Name" title="Contact Name"
                            value={contactName} data-field="contactName" onChange={this.onFieldChange}
                            data-validate-input="" data-required="" data-message-required=""/>
                   </div>
                   <div className="form-group">
-                    <input className="form-control" id="contactEmail" name="contactEmail" placeholder="Contact Email"
+                    <input className="form-control" id="contactEmail" name="contactEmail" placeholder="Contact Email" title="Contact Email"
                            value={contactEmail} data-field="contactEmail" onChange={this.onFieldChange}
                            data-validate-input="" data-required="" data-email="" data-message-required="" data-message-email=""/>
                   </div>
                   <div className="form-group">
-                    <input className="form-control" id="contactPhone" name="contactPhone" placeholder="Contact Phone"
+                    <input className="form-control" id="contactPhone" name="contactPhone" placeholder="Contact Phone" title="Contact Phone"
                            value={contactPhone} data-field="contactPhone" onChange={this.onFieldChange}
                            data-validate-input="" data-required="" data-message-required=""/>
                   </div>

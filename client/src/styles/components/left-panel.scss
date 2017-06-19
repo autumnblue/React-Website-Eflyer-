@@ -91,6 +91,11 @@
           margin-rigth: 8px;
         }
       }
+      .subtitle {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin: 10px 0 5px;
+      }
       .content {
         overflow: hidden;
         .content-inner {
@@ -129,6 +134,11 @@
     background-color: $left-panel-input-bgcolor;
     color: $left-panel-input-color;
     border: $left-panel-input-border;
+  }
+  select.form-control {
+    border: none;
+    outline: $left-panel-input-border;
+    outline-offset: -1px;
   }
   .form-group {
     margin-bottom: 5px;

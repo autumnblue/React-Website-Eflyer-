@@ -29,16 +29,16 @@ export default class Section extends Component {
   }
 
   render() {
-    const { title, collapsible } = this.props;
+    const { title, collapsible, defaultCollapsed, className, ...props } = this.props;
     const { collapsed } = this.state;
-    let className = 'section';
+    let _className = 'section';
     if (collapsible) {
-      className += ' collapsible';
-      className += collapsed ? ' collapsed' : ' expanded';
+      _className += ' collapsible';
+      _className += collapsed ? ' collapsed' : ' expanded';
     }
 
     return (
-      <div className={className}>
+      <div {...props} className={_className + ' ' + className}>
         <div className="title clearfix" onClick={this.toggle}>
           {title}
           {

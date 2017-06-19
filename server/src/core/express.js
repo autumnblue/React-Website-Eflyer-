@@ -42,7 +42,7 @@ var initMiddleware = function (app) {
 
   // Gzip-compression
   app.use(compression());
-  // app.use(compression({ filter: function() {return true}, threshold: 1 }));
+  // app.use(compression({ filter: func}tion() {return true}, threshold: 1 }));
 
   app.use(cors());
 

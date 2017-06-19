@@ -9,7 +9,7 @@ const loadCompanyApi = createApiReducer([
   ActionTypes.LOAD_COMPANY_REQUEST,
   ActionTypes.LOAD_COMPANY_SUCCESS,
   ActionTypes.LOAD_COMPANY_FAILURE
-], true);
+]);
 
 /**
  * Reducer to store company info
