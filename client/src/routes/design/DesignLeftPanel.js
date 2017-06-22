@@ -54,28 +54,29 @@ class DesignLeftPanel extends Component {
   }
 
   render() {
-    const { designOptions, companyInfo, form } = this.props;
+    const { designOptions, form } = this.props;
 
     const themes = _.get(designOptions, 'themes', []);
-    const selectedTheme = form.theme || _.get(themes, '0.title');
+    const selectedTheme = form.theme;
 
     const frontCovers = _.get(designOptions, 'frontCovers', []);
-    const selectedFrontCover = form.frontCover || _.get(frontCovers, '0.title');
+    const selectedFrontCover = form.frontCover;
     const selectedFrontCoverIndex = _.findIndex(frontCovers, {title: selectedFrontCover});
 
     const insideCovers = _.get(designOptions, 'insideCovers', []);
-    const selectedInsideCover = form.insideCover || _.get(insideCovers, '0.title');
+    const selectedInsideCover = form.insideCover;
     const selectedInsideCoverIndex = _.findIndex(insideCovers, {title: selectedInsideCover});
 
-    const companyName = typeof form.companyName === 'string' ? form.companyName : _.get(companyInfo, 'Member.name', '');
-    const companyPhone = typeof form.companyPhone === 'string' ? form.companyPhone : _.get(companyInfo, 'MemberLocation.phone', '');
-    const companyWebsite = typeof form.companyWebsite === 'string' ? form.companyWebsite : _.get(companyInfo, 'Member.website', '');
-    const companyAddressStreet = typeof form.companyAddressStreet === 'string' ? form.companyAddressStreet : _.get(companyInfo, 'MemberLocation.street', '');
-    const companyAddressCity = typeof form.companyAddressCity === 'string' ? form.companyAddressCity : _.get(companyInfo, 'MemberLocation.city', '');
-    const companyAddressState = typeof form.companyAddressState === 'string' ? form.companyAddressState : _.get(companyInfo, 'MemberLocation.state', '');
-    const companyAddressZip = typeof form.companyAddressZip === 'string' ? form.companyAddressZip : _.get(companyInfo, 'MemberLocation.zip', '');
-    const companyAddressCountry = typeof form.companyAddressCountry === 'string' ? form.companyAddressCountry : _.get(companyInfo, 'MemberLocation.country', '');
-    const companyDescription = typeof form.companyDescription === 'string' ? form.companyDescription : _.get(companyInfo, 'MemberDescription.aboutUs', '');
+    const companyName = form.companyName || '';
+    const companyPhone = form.companyPhone || '';
+    const companyWebsite = form.companyWebsite || '';
+    const companyAddressStreet = form.companyAddressStreet || '';
+    const companyAddressCity = form.companyAddressCity || '';
+    const companyAddressState = form.companyAddressState || '';
+    const companyAddressZip = form.companyAddressZip || '';
+    const companyAddressCountry = form.companyAddressCountry || '';
+    const companyDescription = form.companyDescription || '';
+
     const flyerName = form.flyerName || '';
 
     return (

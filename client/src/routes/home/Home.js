@@ -1,7 +1,9 @@
 /* eslint-disable max-len */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { hashHistory } from 'react-router';
 import { LeftPanel, Accordion, Section } from 'components/left-panel';
+import { loadDesignOptions } from 'actions/options';
 import { loadCompany } from 'actions/company';
 import { loadFlyer, uiChangeFlyer, saveFlyer, createFlyer, uiUsePreviousFlyer, uiCreateNewFlyer } from 'actions/flyers';
 import UiValidate from 'components/forms/UIValidate';
@@ -24,7 +26,8 @@ class Home extends Component {
   }
 
   componentWillMount() {
-    const {dispatch, companyInfo, autosave} = this.props;
+    const {dispatch, designOptions, companyInfo, autosave} = this.props;
+    designOptions || dispatch(loadDesignOptions());
     companyInfo || dispatch(loadCompany());
     autosave || dispatch(loadFlyer());
   }
@@ -35,7 +38,7 @@ class Home extends Component {
   }
 
   onUsePreviousClick() {
-    const { dispatch, autosave, createFlyerApi, saveFlyerApi } = this.props;
+    const { dispatch, autosave, changed, createFlyerApi, saveFlyerApi } = this.props;
 
     if (createFlyerApi.status === consts.API_LOADING || saveFlyerApi.status === consts.API_LOADING) {
       return;
@@ -43,14 +46,19 @@ class Home extends Component {
 
     const form = $('#contact-info-form');
     if (autosave && form.valid()) {
-      dispatch(saveFlyer({
-        contactName: $('#contact-info-form #contactName').val(),
-        contactEmail: $('#contact-info-form #contactEmail').val(),
-        contactPhone: $('#contact-info-form #contactPhone').val()
-      }, '/design'))
-      .then(() => {
+      if (changed) {
+        dispatch(saveFlyer({
+          contactName: $('#contact-info-form #contactName').val(),
+          contactEmail: $('#contact-info-form #contactEmail').val(),
+          contactPhone: $('#contact-info-form #contactPhone').val()
+        }, '/design'))
+        .then(() => {
+          dispatch(uiUsePreviousFlyer());
+        });
+      } else {
         dispatch(uiUsePreviousFlyer());
-      });
+        hashHistory.push('/design');
+      }
     }
   }
 
@@ -79,12 +87,27 @@ class Home extends Component {
   }
 
   createNewFlyer() {
-    const { dispatch } = this.props;
+    const { dispatch, designOptions, companyInfo } = this.props;
 
     dispatch(createFlyer({
       contactName: $('#contact-info-form #contactName').val(),
       contactEmail: $('#contact-info-form #contactEmail').val(),
-      contactPhone: $('#contact-info-form #contactPhone').val()
+      contactPhone: $('#contact-info-form #contactPhone').val(),
+
+      theme: _.get(designOptions, 'themes[0].title', ''),
+      frontCover: _.get(designOptions, 'frontCovers[0].title', ''),
+      insideCover: _.get(designOptions, 'insideCovers[0].title', ''),
+
+      companyName: _.get(companyInfo, 'Member.name', ''),
+      companyPhone: _.get(companyInfo, 'MemberLocation.phone', ''),
+      companyWebsite: _.get(companyInfo, 'Member.website', ''),
+      companyAddressStreet: _.get(companyInfo, 'MemberLocation.street', ''),
+      companyAddressCity: _.get(companyInfo, 'MemberLocation.city', ''),
+      companyAddressState: _.get(companyInfo, 'MemberLocation.state', ''),
+      companyAddressZip: _.get(companyInfo, 'MemberLocation.zip', ''),
+      companyAddressCountry: _.get(companyInfo, 'MemberLocation.country', ''),
+      companyDescription: _.get(companyInfo, 'MemberDescription.aboutUs', ''),
+      companyLogo: _.get(companyInfo, 'MemberLogo.largeCLR', '')
     }, '/design'))
     .then(() => {
       dispatch(uiCreateNewFlyer());
@@ -162,9 +185,11 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => ({
+  designOptions: _.get(state, 'options.designOptions'),
   companyInfo: _.get(state, 'company.info'),
   autosave: _.get(state, 'flyers.autosave'),
   form: _.get(state, 'flyers.form'),
+  changed: _.get(state, 'flyers.changed'),
   createFlyerApi: _.get(state, 'flyers.createFlyerApi'),
   saveFlyerApi: _.get(state, 'flyers.saveFlyerApi')
 });

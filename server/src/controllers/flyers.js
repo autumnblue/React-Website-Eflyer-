@@ -28,6 +28,10 @@ exports.getAutosave = function (req, res, next) {
 
 exports.createAutosave = function (req, res, next) {
 
+  var data = _.omit(req.body, ['id', 'membmerContactId', 'status', 'autosavedAt', 'submittedAt', 'approvedAt']);
+  data.membmerContactId = req.user.id;
+  data.status  ='draft';
+
   var models = req.db.content.models;
   models.Flyer.destroy({
     where: {
@@ -36,14 +40,7 @@ exports.createAutosave = function (req, res, next) {
     }
   })
   .then(function () {
-    var flyer = {
-      membmerContactId: req.user.id,
-      contactName: req.body.contactName,
-      contactEmail: req.body.contactEmail,
-      contactPhone: req.body.contactPhone,
-      status: 'draft'
-    };
-    return models.Flyer.create(flyer);
+    return models.Flyer.create(data);
   })
   .then(function (created) {
     res.json(created);

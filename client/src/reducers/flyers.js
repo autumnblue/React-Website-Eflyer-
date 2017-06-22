@@ -61,7 +61,7 @@ export const changed = (state = false, action) => {
  */
 export const form = (state = {}, action) => {
   switch (action.type) {
-    case ActionTypes.LOAD_FLYER_SUCCESS:
+    case ActionTypes.LOAD_FLYER_SUCCESS: case ActionTypes.CREATE_FLYER_SUCCESS:
       return action.response || {};
     case ActionTypes.UI_CHANGE_FLYER:
       return { ...state, ...action.change };
