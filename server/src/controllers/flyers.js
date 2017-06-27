@@ -16,7 +16,7 @@ exports.getAutosave = function (req, res, next) {
   })
   .then(function (flyer) {
     if (!flyer) {
-      res.json(null);
+      return res.json(null);
     }
     res.json(flyer);
   })
@@ -112,7 +112,7 @@ exports.submit = function (req, res, next) {
     }
 
     submitted = true;
-    return models.MemberContact.findOne({
+    return req.db.records.models.MemberContact.findOne({
       where: {id: req.user.id},
       include: [{all: true}]
     })
@@ -120,15 +120,14 @@ exports.submit = function (req, res, next) {
       if (hasCompanyInfoBeenEdited(saved, userData)) {
         return models.CompanyInfoUpdate.destroy({
           where: {flyerId: saved.id}
+        }).then(function () {
+          return models.CompanyInfoUpdate.create({
+            flyerId: saved.id,
+            memberContactId: req.user.id,
+            status: 'pending'
+          });
         });
       }
-    })
-    .then(function () {
-      return models.CompanyInfoUpdate.create({
-        flyerId: saved.id,
-        memberContactId: req.user.id,
-        status: 'pending'
-      });
     })
     .catch(function (err) {
       logger.info('Failed to handle CompanyInfoUpdate for newly submitted flyer!');

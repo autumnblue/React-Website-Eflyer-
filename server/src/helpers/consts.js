@@ -14,9 +14,9 @@ module.exports = {
     { title: 'green', color: '#056608' }
   ],
   FLYER_FRONT_COVERS: [
-    { title: 'Default', imgUrl: '/img/demo/front-covers/default_[theme].jpg', thumbnail: '/img/demo/front-covers/default_thumb.jpg' },
-    { title: 'Professional', imgUrl: '/img/demo/front-covers/professional_[theme].jpg', thumbnail: '/img/demo/front-covers/professional_thumb.jpg' },
-    { title: 'Nature', imgUrl: '/img/demo/front-covers/nature_[theme].png', thumbnail: '/img/demo/front-covers/nature_thumb.jpg' }
+    { title: 'Default', imgUrl: '/img/demo/front-covers/default_[theme].jpg', thumbnail: '/img/demo/front-covers/default_thumb.jpg', logoColorCode: 'CLR' },
+    { title: 'Professional', imgUrl: '/img/demo/front-covers/professional_[theme].jpg', thumbnail: '/img/demo/front-covers/professional_thumb.jpg', logoColorCode: 'CLR' },
+    { title: 'Nature', imgUrl: '/img/demo/front-covers/nature_[theme].png', thumbnail: '/img/demo/front-covers/nature_thumb.jpg', logoColorCode: 'REV' }
   ],
   FLYER_INSIDE_COVERS: [
     { title: 'Default', imgUrl: '/img/demo/inside-covers/default_[theme].jpg', thumbnail: '/img/demo/inside-covers/default_thumb.jpg' },

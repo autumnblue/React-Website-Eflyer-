@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { hashHistory } from 'react-router';
 import DesignLeftPanel from './DesignLeftPanel';
-import { loadFlyer, saveFlyer } from 'actions/flyers';
+import { loadFlyer, saveFlyer, submitFlyer } from 'actions/flyers';
 import { showNotification } from 'actions/notifications';
 
 class Design extends Component {
@@ -9,13 +10,27 @@ class Design extends Component {
   constructor(...args) {
     super(...args);
     this.doAutosave = this.doAutosave.bind(this);
+    this.onSubmitClick = this.onSubmitClick.bind(this);
   }
 
   componentWillMount() {
     const {dispatch, autosave} = this.props;
-    autosave || dispatch(loadFlyer());
+    if (!autosave) {
+      dispatch(loadFlyer()).then(response => {
+        response || hashHistory.push('/home');
+      }).catch(() => {
+        hashHistory.push('/home');
+      });
+    }
 
     setTimeout(this.doAutosave, consts.AUTOSAVE_INTERVAL);
+  }
+
+  onSubmitClick() {
+    const {dispatch} = this.props;
+    dispatch(submitFlyer('/success')).catch(() => {
+      dispatch(showNotification('Failed to submit flyer.', 'fail'));
+    });
   }
 
   doAutosave() {
@@ -25,6 +40,8 @@ class Design extends Component {
       // flyer has been loaded && not in the middle of auto-saving && flyer has been changed since last save
       dispatch(saveFlyer(form)).then(() => {
         dispatch(showNotification('Flyer saved.'));
+      }).catch(() => {
+        dispatch(showNotification('Failed to save flyer.', 'fail'));
       });
     }
 
@@ -45,7 +62,7 @@ class Design extends Component {
           {
             step1Action === 'USE_PREVIOUS_FLYER' ?
               <div className="page-actions">
-                <button className="btn btn-primary btn-submit-flyer">SUBMIT FLYER</button>
+                <button className="btn btn-primary btn-submit-flyer" onClick={this.onSubmitClick}>SUBMIT FLYER</button>
                 <button className="btn btn-success btn-edit-products">EDIT PRODUCTS</button>
               </div>
               :

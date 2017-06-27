@@ -108,3 +108,28 @@ export function uiCreateNewFlyer() {
     type: UI_CREATE_NEW_FLYER
   };
 }
+
+// ======================================================================================
+/**
+ * submitFlyer API action
+ */
+export const SUBMIT_FLYER_REQUEST = 'SUBMIT_FLYER_REQUEST';
+export const SUBMIT_FLYER_SUCCESS = 'SUBMIT_FLYER_SUCCESS';
+export const SUBMIT_FLYER_FAILURE = 'SUBMIT_FLYER_FAILURE';
+
+function fetchSubmitFlyer(successRedirect) {
+  return {
+    [CALL_API]: {
+      types: [SUBMIT_FLYER_REQUEST, SUBMIT_FLYER_SUCCESS, SUBMIT_FLYER_FAILURE],
+      endpoint: '/flyers/submit',
+      method: 'get',
+      successRedirect
+    }
+  };
+}
+
+export function submitFlyer(successRedirect) {
+  return (dispatch, getState) => {
+    return dispatch(fetchSubmitFlyer(successRedirect));
+  };
+}

@@ -31,12 +31,23 @@ const saveFlyerApi = createApiReducer([
 ]);
 
 /**
+ * Reducer to submitFlyer API status, created using generator
+ */
+const submitFlyerApi = createApiReducer([
+  ActionTypes.SUBMIT_FLYER_REQUEST,
+  ActionTypes.SUBMIT_FLYER_SUCCESS,
+  ActionTypes.SUBMIT_FLYER_FAILURE
+]);
+
+/**
  * Reducer to sync with autosaved flyer data
  */
 export const autosave = (state = null, action) => {
   switch (action.type) {
     case ActionTypes.LOAD_FLYER_SUCCESS: case ActionTypes.CREATE_FLYER_SUCCESS: case ActionTypes.SAVE_FLYER_SUCCESS:
       return action.response;
+    case ActionTypes.SUBMIT_FLYER_SUCCESS:
+      return null;
     default:
       return state;
   }
@@ -47,7 +58,10 @@ export const autosave = (state = null, action) => {
  */
 export const changed = (state = false, action) => {
   switch (action.type) {
-    case ActionTypes.LOAD_FLYER_SUCCESS: case ActionTypes.CREATE_FLYER_SUCCESS: case ActionTypes.SAVE_FLYER_SUCCESS:
+    case ActionTypes.LOAD_FLYER_SUCCESS:
+    case ActionTypes.CREATE_FLYER_SUCCESS:
+    case ActionTypes.SAVE_FLYER_SUCCESS:
+    case ActionTypes.SUBMIT_FLYER_SUCCESS:
       return false;
     case ActionTypes.UI_CHANGE_FLYER:
       return true;
@@ -63,6 +77,8 @@ export const form = (state = {}, action) => {
   switch (action.type) {
     case ActionTypes.LOAD_FLYER_SUCCESS: case ActionTypes.CREATE_FLYER_SUCCESS:
       return action.response || {};
+    case ActionTypes.SUBMIT_FLYER_SUCCESS:
+      return {};
     case ActionTypes.UI_CHANGE_FLYER:
       return { ...state, ...action.change };
     default:
@@ -91,6 +107,7 @@ export default {
     loadFlyerApi,
     createFlyerApi,
     saveFlyerApi,
+    submitFlyerApi,
     autosave,
     changed,
     form,

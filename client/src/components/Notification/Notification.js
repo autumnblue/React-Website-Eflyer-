@@ -8,9 +8,10 @@ class Notification extends Component {
     if (!notifications.length) {
       return null;
     }
+    const ntf = notifications[notifications.length - 1];
     return (
-      <div className="top-notification">
-        {notifications[notifications.length - 1]}
+      <div className={'top-notification ' + ntf.type}>
+        {ntf.text}
       </div>
     );
   }

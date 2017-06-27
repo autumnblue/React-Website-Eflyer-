@@ -5,6 +5,7 @@ import { hashHistory } from 'react-router';
 import { LeftPanel, Accordion, Section } from 'components/left-panel';
 import { loadDesignOptions } from 'actions/options';
 import { loadCompany } from 'actions/company';
+import { showNotification } from 'actions/notifications';
 import { loadFlyer, uiChangeFlyer, saveFlyer, createFlyer, uiUsePreviousFlyer, uiCreateNewFlyer } from 'actions/flyers';
 import UiValidate from 'components/forms/UIValidate';
 import ConfirmBox from 'components/modals/ConfirmBox';
@@ -28,8 +29,8 @@ class Home extends Component {
   componentWillMount() {
     const {dispatch, designOptions, companyInfo, autosave} = this.props;
     designOptions || dispatch(loadDesignOptions());
-    companyInfo || dispatch(loadCompany());
-    autosave || dispatch(loadFlyer());
+    companyInfo || dispatch(loadCompany()).catch(() => dispatch(showNotification('Failed to load company info.', 'fail')));
+    autosave || dispatch(loadFlyer()).catch(() => dispatch(showNotification('Failed to load flyer.', 'fail')));
   }
 
   onFieldChange(e) {
@@ -54,6 +55,8 @@ class Home extends Component {
         }, '/design'))
         .then(() => {
           dispatch(uiUsePreviousFlyer());
+        }).catch(() => {
+          dispatch(showNotification('Something went wrong. Please try again.', 'fail'));
         });
       } else {
         dispatch(uiUsePreviousFlyer());
@@ -88,6 +91,7 @@ class Home extends Component {
 
   createNewFlyer() {
     const { dispatch, designOptions, companyInfo } = this.props;
+    const logoColorCode = _.get(designOptions, 'frontCovers[0].logoColorCode', '');
 
     dispatch(createFlyer({
       contactName: $('#contact-info-form #contactName').val(),
@@ -107,10 +111,12 @@ class Home extends Component {
       companyAddressZip: _.get(companyInfo, 'MemberLocation.zip', ''),
       companyAddressCountry: _.get(companyInfo, 'MemberLocation.country', ''),
       companyDescription: _.get(companyInfo, 'MemberDescription.aboutUs', ''),
-      companyLogo: _.get(companyInfo, 'MemberLogo.largeCLR', '')
+      companyLogo: consts.COMPANY_LOGO_LOCATION.replace('{{COLOR_CODE}}', _.capitalize(logoColorCode)) + _.get(companyInfo, 'MemberLogo.large' + logoColorCode.toUpperCase(), '')
     }, '/design'))
     .then(() => {
       dispatch(uiCreateNewFlyer());
+    }).catch(() => {
+      dispatch(showNotification('Failed to create flyer.', 'fail'));
     });
   }
 

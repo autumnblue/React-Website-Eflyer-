@@ -34,9 +34,14 @@ class DesignLeftPanel extends Component {
 
   onFrontCoverSelect(e) {
     const frontCover = $(e.currentTarget).data('id');
-    const {dispatch, form} = this.props;
+    const {dispatch, form, designOptions, companyInfo} = this.props;
     if (form.frontCover !== frontCover) {
-      dispatch(uiChangeFlyer({frontCover}));
+      const frontCovers = _.get(designOptions, 'frontCovers', []);
+      const coverObj = _.find(frontCovers, {title: frontCover});
+      dispatch(uiChangeFlyer({
+        frontCover,
+        companyLogo: consts.COMPANY_LOGO_LOCATION.replace('{{COLOR_CODE}}', _.capitalize(coverObj.logoColorCode)) + _.get(companyInfo, 'MemberLogo.large' + coverObj.logoColorCode.toUpperCase(), '')
+      }));
     }
   }
 
