@@ -20,4 +20,6 @@ export default {
   AUTOSAVE_INTERVAL: 5000, // 5 seconds
 
   NOTIFICATION_TTL: 3000, // 3 seconds
+
+  PRODUCTS_SEARCH_DELAY: 1000 // 1 second
 };

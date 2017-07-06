@@ -10,6 +10,7 @@ class Design extends Component {
   constructor(...args) {
     super(...args);
     this.doAutosave = this.doAutosave.bind(this);
+    this.onProductsClick = this.onProductsClick.bind(this);
     this.onSubmitClick = this.onSubmitClick.bind(this);
   }
 
@@ -31,6 +32,10 @@ class Design extends Component {
     dispatch(submitFlyer('/success')).catch(() => {
       dispatch(showNotification('Failed to submit flyer.', 'fail'));
     });
+  }
+
+  onProductsClick() {
+    hashHistory.push('/products');
   }
 
   doAutosave() {
@@ -57,17 +62,17 @@ class Design extends Component {
 
         <div id="main">
           <div className="contents">
-            <h1>Welcome!</h1>
+            &nbsp;
           </div>
           {
             step1Action === 'USE_PREVIOUS_FLYER' ?
               <div className="page-actions">
                 <button className="btn btn-primary btn-submit-flyer" onClick={this.onSubmitClick}>SUBMIT FLYER</button>
-                <button className="btn btn-success btn-edit-products">EDIT PRODUCTS</button>
+                <button className="btn btn-success btn-edit-products" onClick={this.onProductsClick}>EDIT PRODUCTS</button>
               </div>
               :
               <div className="page-actions">
-                <button className="btn btn-info btn-add-products">ADD PRODUCTS</button>
+                <button className="btn btn-info btn-add-products" onClick={this.onProductsClick}>ADD PRODUCTS</button>
               </div>
           }
         </div>

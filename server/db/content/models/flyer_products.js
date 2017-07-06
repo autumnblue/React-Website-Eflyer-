@@ -17,10 +17,10 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       field: 'partnum'
     },
-    logo: {
+    image: {
       type: DataTypes.STRING,
       allowNull: true,
-      field: 'logo'
+      field: 'image'
     },
     name: {
       type: DataTypes.STRING,

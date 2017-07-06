@@ -38,7 +38,7 @@ export default class Section extends Component {
     }
 
     return (
-      <div {...props} className={_className + ' ' + className}>
+      <div {...props} className={_className + ' ' + (className || '')}>
         <div className="title clearfix" onClick={this.toggle}>
           {title}
           {

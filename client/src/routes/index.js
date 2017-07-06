@@ -7,6 +7,8 @@ import AppLayout from '../components/layout/AppLayout';
 import BasePage from '../components/layout/BasePage';
 import Home from './home/Home';
 import Design from './design/Design';
+import Products from './products/Products';
+import Review from './review/Review';
 import Success from './success/Success';
 import LoginRequired from './public-pages/LoginRequired';
 import SessionExpired from './public-pages/SessionExpired';
@@ -22,6 +24,8 @@ const routes = (
       <Route path="home" component={Home}/>
       <Route path="design" component={Design}/>
       <Route path="success" component={Success}/>
+      <Route path="products" component={Products}/>
+      <Route path="review" component={Review}/>
 
     </Route>
 

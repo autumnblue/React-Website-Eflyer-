@@ -15,6 +15,7 @@
   -ms-transform: translateX(-50%);
   -o-transform: translateX(-50%);
   transform: translateX(-50%);
+  z-index: $zindex-notification;
 
   &.fail {
     background: #ff4f5f;

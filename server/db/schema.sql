@@ -38,7 +38,7 @@ CREATE TABLE `flyer_products` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,
     `flyer_id` INT(11) NOT NULL,
     `partnum` VARCHAR(100) NOT NULL,
-    `logo` VARCHAR(255),
+    `image` VARCHAR(255),
     `name` VARCHAR(255) NOT NULL,
     `description` TEXT NOT NULL,
     `price` VARCHAR(100) NOT NULL,

@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import { LOCATION_CHANGE } from 'react-router-redux';
+import numeral from 'numeral';
 import consts from './consts';
 import config from '../config';
 
@@ -105,3 +106,94 @@ export const createApiReducer = (actionTypes, storeResponse = false, resetOnLoca
     }
   };
 };
+
+/**
+ * generate cancellable boilerplate API reducer
+ * @param   actionTypes     Array of Request, Success and Failure action types
+ * @return  reducer function
+ */
+export const createCancellableApiReducer = (actionTypes, storeResponse = false, resetOnLocationChange = true) => {
+
+  if (!Array.isArray(actionTypes) || actionTypes.length !== 4) {
+    throw new Error('API reducer generator: Expected an array of three action types.');
+  }
+  if (!actionTypes.every(type => typeof type === 'string')) {
+    throw new Error('API reducer generator: Expected action types to be strings.');
+  }
+
+  const [requestType, successType, failureType, cancelType] = actionTypes;
+
+  return (state = {
+    status: consts.API_NOT_LOADED,
+    error: '',
+    actionsInProgress: []
+  }, action) => {
+    switch (action.type) {
+      case requestType:
+        return {
+          status: consts.API_LOADING,
+          error: '',
+          actionsInProgress: state.actionsInProgress.concat(action.id)
+        };
+      case successType:
+        if (state.actionsInProgress.indexOf(action.id) === -1) {
+          return state;
+        }
+        return storeResponse ? {
+          status: consts.API_LOADED_SUCCESS,
+          error: '',
+          response: action.response,
+          actionsInProgress: _.without(state.actionsInProgress, action.id)
+        } : {
+          status: consts.API_LOADED_SUCCESS,
+          error: '',
+          actionsInProgress: _.without(state.actionsInProgress, action.id)
+        };
+      case failureType:
+        if (state.actionsInProgress.indexOf(acton.id) === -1) {
+          return state;
+        }
+        return {
+          status: consts.API_LOADED_ERROR,
+          error: action.error,
+          actionsInProgress: _.without(state.actionsInProgress, action.id)
+        };
+      case cancelType:
+        return {
+          status: consts.API_NOT_LOADED,
+          error: '',
+          actionsInProgress: []
+        };
+      case LOCATION_CHANGE:
+        if (resetOnLocationChange && action.payload && action.payload.action !== 'POP') {
+          return {
+            status: consts.API_NOT_LOADED,
+            error: '',
+            actionsInProgress: []
+          };
+        }
+        return state;
+      default:
+        return state;
+    }
+  };
+};
+
+/**
+ * get product image url from a given product object
+ * @param   product     object
+ * @return  image url   string
+ */
+export const getProductImageUrl = (product) => (
+  // consts.PRODUCT_IMAGE_LOCATION + (product.subId || product.supplierId) + '/' + product.partNum + '-2.jpg'
+  'http://portal.edge-group.com/~edgegro1/members/marketing/img/content/103/dantona_0809-0010-2.jpg'
+);
+
+/**
+ * convert price value to currency format e.g. $1,000.23
+ * @param   price value
+ * @return  formatted string
+ */
+export const currency = (price) => (
+  numeral(price).format('$0,0.00')
+);

@@ -66,7 +66,17 @@ exports.updateAutosave = function (req, res, next) {
       }
     })
   .then(function (result) {
-    res.json(result);
+    if (!(Array.isArray(result) && result[0])) {
+      return errorHelper.handleError(res, 'Failed to save the flyer');
+    }
+    return models.Flyer.findOne({
+      where: {
+        membmerContactId: req.user.id,
+        status: 'draft'
+      }
+    }).then(function (flyer) {
+      res.json(flyer);
+    });
   })
   .catch(function (err) {
     return errorHelper.handleError(res, err);
@@ -107,8 +117,7 @@ exports.submit = function (req, res, next) {
   .then(function (updateResult) {
     if (!saved) return;
     if (!(Array.isArray(updateResult) && updateResult[0])) {
-      errorHelper.handleError(res, 'Failed to submit flyer');
-      return;
+      return errorHelper.handleError(res, 'Failed to submit flyer');
     }
 
     submitted = true;
@@ -244,7 +253,17 @@ exports.update = function (req, res, next) {
       }
     })
   .then(function (result) {
-    res.json(result);
+    if (!(Array.isArray(result) && result[0])) {
+      return errorHelper.handleError(res, 'Failed to update the flyer');
+    }
+    return models.Flyer.findOne({
+      where: {
+        id: req.params.flyerId,
+        membmerContactId: req.user.id
+      }
+    }).then(function (flyer) {
+      res.json(flyer);
+    });
   })
   .catch(function (err) {
     return errorHelper.handleError(res, err);
@@ -273,7 +292,7 @@ exports.delete = function (req, res, next) {
       }
     })
     .then(function () {
-      res.json(result);
+      res.json({id: req.params.flyerId});
     });
   })
   .catch(function (err) {

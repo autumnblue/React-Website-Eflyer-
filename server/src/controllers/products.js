@@ -3,15 +3,18 @@ var errorHelper = require('../helpers/error-helper');
 exports.search = function (req, res, next) {
 
   var models = req.db.content.models;
-  var where = {};
+  var conditions = [];
   if (req.query.supplierId) {
-    where.supplierId = req.query.supplierId;
+    conditions.push({$or: [
+      {$and: [{supplierId: req.query.supplierId}, {subId: null}]},
+      {subId: req.query.supplierId}
+    ]});
   }
   if (req.query.partNum) {
-    where.partNum = {$like: '%' + req.query.partNum + '%'};
+    conditions.push({partNum: {$like: '%' + req.query.partNum + '%'}});
   }
   models.Product.findAll({
-    where: where,
+    where: {$and: conditions},
     include: [
       {model: models.ProductName, as: 'name'},
       {model: models.ProductDescription, as: 'description'},

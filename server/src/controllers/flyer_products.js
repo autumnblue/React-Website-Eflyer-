@@ -130,7 +130,14 @@ exports.update = function (req, res, next) {
       where: {id: req.params.flyerProductId}
     })
   .then(function (result) {
-    res.json(result);
+    if (!(Array.isArray(result) && result[0])) {
+      return errorHelper.handleError(res, 'Failed to update the flyer product');
+    }
+    return models.FlyerProduct.findOne({
+      where: {id: req.params.flyerProductId}
+    }).then(function (flyerProduct) {
+      res.json(flyerProduct);
+    });
   })
   .catch(function (err) {
     return errorHelper.handleError(res, err);
@@ -145,7 +152,7 @@ exports.delete = function (req, res, next) {
     where: {id: req.params.flyerProductId}
   })
   .then(function (result) {
-    res.json(result);
+    res.json({id: req.params.flyerProductId});
   })
   .catch(function (err) {
     return errorHelper.handleError(res, err);

@@ -15,7 +15,7 @@ body {
 }
 
 form {
-  input.invalid, select.invalid {
+  input.invalid, select.invalid, textarea.invalid {
     color: #a90329 !important;
     background-color: #ffddee !important;
   }

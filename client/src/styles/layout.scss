@@ -39,7 +39,6 @@
   width: $left-panel-width;
   height: 100vh;
   overflow-y: scroll;
-  padding-bottom: 50px;
   background: -webkit-gradient(linear,left top,right top,color-stop(93%,$left-panel-bgcolor1),color-stop(100%,$left-panel-bgcolor2));
   background: -webkit-linear-gradient(left,$left-panel-bgcolor1 93%,$left-panel-bgcolor2 100%);
   background: -o-linear-gradient(left,$left-panel-bgcolor1 93%,$left-panel-bgcolor2 100%);
@@ -58,7 +57,8 @@
   overflow-y: scroll;
   .contents {
     padding: 15px 15px 50px 15px;
-    min-height: 100%;
+    height: 100%;
+    overflow-y: scroll;
   }
 }
 .sidebar-minified {
@@ -75,6 +75,7 @@
 @media only screen and (max-width: $mq-up-to-tablet) {
   #left-panel {
     width: $left-panel-width-mobile;
+    padding-bottom: 50px;
   }
   #main {
     margin-left: $left-panel-width-mobile;

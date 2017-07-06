@@ -14,7 +14,7 @@ export default store => next => (action) => {
   }
 
   let { endpoint } = apiParams;
-  const { types, method, data, successRedirect, failureRedirect } = apiParams;
+  const { types, method, data, successRedirect, failureRedirect, id } = apiParams;
 
   if (typeof endpoint === 'function') {
     endpoint = endpoint(store.getState());
@@ -37,13 +37,14 @@ export default store => next => (action) => {
   }
 
   const [requestType, successType, failureType] = types;
-  next(actionWith({ type: requestType, endpoint, method, data }));
+  next(actionWith({ type: requestType, endpoint, method, data, id }));
 
   return callApi(endpoint, method, data).then(
     ({ json }) => {
       next(actionWith({
         type: successType,
-        response: json
+        response: json,
+        id
       }));
       successRedirect && store.dispatch(routerActions.push(successRedirect));
       return json;
@@ -53,8 +54,9 @@ export default store => next => (action) => {
       // Redirect before FAILURE action dispatch to allow error notification
       next(actionWith({
         type: failureType,
-        error: json
+        error: json,
         // error: error.message || 'Something went wrong'
+        id
       }));
       if (response && response.status && response.status === 401) {
         if (store.getState().auth.user) {
