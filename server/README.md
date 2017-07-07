@@ -35,3 +35,13 @@ $ npm run watch
 ```
 $ npm run api
 ```
+
+- **Setup new tables needed for e-flyer**
+
+    The tables can be created by running Sequelize.js migrations.
+
+```
+$ npm install -g sequelize-cli
+
+$ sequelize db:migrate
+```
