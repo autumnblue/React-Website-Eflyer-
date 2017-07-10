@@ -61,7 +61,7 @@ export default store => next => (action) => {
       if (response && response.status && response.status === 401) {
         if (store.getState().auth.user) {
           store.dispatch(flushUser());
-          store.dispatch(routerActions.push('#/session-expired'));
+          store.dispatch(routerActions.push('/session-expired'));
         }
       }
       return Promise.reject(json); // Commented because it causes `Uncaught (in promise)`
