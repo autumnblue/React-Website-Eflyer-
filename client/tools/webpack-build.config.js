@@ -8,7 +8,7 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 var env = process.env.NODE_ENV;
 var DEBUG = env !== 'production';
 var VERBOSE = process.argv.indexOf('--verbose') > -1;
-var apiHost = process.env.EFLYER_API_HOST ? process.env.EFLYER_API_HOST : 'http://127.0.0.1:5000');
+var apiHost = process.env.EFLYER_API_HOST ? process.env.EFLYER_API_HOST : 'http://127.0.0.1:5000';
 var appBaseUrl = process.env.EFLYER_APP_BASE_URL;
 
 var GLOBALS = {
