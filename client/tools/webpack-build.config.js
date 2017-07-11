@@ -1,4 +1,4 @@
-/* eslint-disable no-var, object-shorthand, no-unused-vars */
+/* eslint-disable max-len, no-var, object-shorthand, no-unused-vars */
 
 var webpack           = require('webpack');
 var path              = require('path');
@@ -8,8 +8,8 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 var env = process.env.NODE_ENV;
 var DEBUG = env !== 'production';
 var VERBOSE = process.argv.indexOf('--verbose') > -1;
-var apiHost = process.env.EFLYER_API_HOST ? process.env.EFLYER_API_HOST : 'http://127.0.0.1:5000';
-var appBaseUrl = process.env.EFLYER_APP_BASE_URL;
+var apiHost = process.env.EFLYER_API_HOST ? process.env.EFLYER_API_HOST : 'http://127.0.0.1:5000'; // https://portal.edge-group.com/eflyer for deployment
+var appBaseUrl = process.env.EFLYER_APP_BASE_URL; // '/eflyer' for deployment
 
 var GLOBALS = {
   'process.env.NODE_ENV': JSON.stringify(env),
@@ -77,7 +77,7 @@ module.exports = {
     filename: 'app/[name].[hash].bundle.js',
     sourceMapFilename: 'app/[name].[chunkhash].bundle.map',
     chunkFilename: 'app/[id].[chunkhash].chunk.js',
-    publicPath: '/'
+    publicPath: appBaseUrl || '/'
   },
 
   plugins: plugins,

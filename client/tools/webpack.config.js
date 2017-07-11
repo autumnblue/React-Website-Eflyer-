@@ -1,4 +1,4 @@
-/* eslint-disable no-var, object-shorthand */
+/* eslint-disable max-len, no-var, object-shorthand */
 
 var webpack           = require('webpack');
 var path              = require('path');
@@ -11,7 +11,7 @@ var VERBOSE = process.argv.indexOf('--verbose') > -1;
 var apiHost = process.argv.indexOf('--dev') === -1 ?
   (process.env.EFLYER_API_HOST ? process.env.EFLYER_API_HOST : 'http://127.0.0.1:5000')
   : null;
-var appBaseUrl = process.env.EFLYER_APP_BASE_URL;
+var appBaseUrl = process.env.EFLYER_APP_BASE_URL || '/eflyer';
 
 var GLOBALS = {
   'process.env.NODE_ENV': JSON.stringify(env),
@@ -93,7 +93,7 @@ module.exports = {
     filename: 'app/[name].bundle.js',
     sourceMapFilename: 'app/[name].bundle.map',
     chunkFilename: 'app/[id].chunk.js',
-    publicPath: '/'
+    publicPath: appBaseUrl || '/'
   },
 
   plugins: plugins,
