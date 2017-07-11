@@ -36,6 +36,16 @@ $ npm run build-dev
 
 ### Deployment
 
+- **Set environment variables**
+
+e.g.
+
+````
+EFLYER_API_HOST: "https://portal.edge-group.com/eflyer"
+EFLYER_API_PATH: "/api/v1"
+EFLYER_APP_BASE_URL: "/eflyer"
+```
+
 - **Build the client app for production deployment**
 
 ```

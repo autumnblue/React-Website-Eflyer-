@@ -11,12 +11,14 @@ var VERBOSE = process.argv.indexOf('--verbose') > -1;
 var apiHost = process.argv.indexOf('--dev') === -1 ?
   (process.env.EFLYER_API_HOST ? process.env.EFLYER_API_HOST : 'http://127.0.0.1:5000')
   : null;
+var apiPath = process.env.EFLYER_API_PATH;
 var appBaseUrl = process.env.EFLYER_APP_BASE_URL || '/eflyer';
 
 var GLOBALS = {
   'process.env.NODE_ENV': JSON.stringify(env),
   'process.env.BROWSER': true,
   'process.env.API_HOST': JSON.stringify(apiHost),
+  'process.env.API_PATH': JSON.stringify(apiPath),
   'process.env.APP_BASE_URL': JSON.stringify(appBaseUrl)
 };
 
