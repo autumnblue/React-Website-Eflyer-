@@ -179,6 +179,7 @@ export const createCancellableApiReducer = (actionTypes, storeResponse = false, 
   };
 };
 
+
 /**
  * get product image url from a given product object
  * @param   product     object
@@ -189,11 +190,24 @@ export const getProductImageUrl = (product) => (
   'http://portal.edge-group.com/~edgegro1/members/marketing/img/content/103/dantona_0809-0010-2.jpg'
 );
 
+
 /**
  * convert price value to currency format e.g. $1,000.23
- * @param   price value
- * @return  formatted string
+ * @param   price       value
+ * @return  formatted   string
  */
 export const currency = (price) => (
   numeral(price).format('$0,0.00')
 );
+
+
+/**
+ * get product image url from a given product object
+ * @param   imgUrl            string
+ * @return  fixed image url   string
+ */
+export const fixLocalImageUrl = (imgUrl) => {
+  if (imgUrl && imgUrl[0] === '/') {
+    return config.APP_BASE_URL + imgUrl;
+  }
+};

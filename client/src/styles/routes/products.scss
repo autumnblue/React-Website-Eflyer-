@@ -11,7 +11,7 @@
       .results {
         height: calc(100vh - 280px);
         min-height: 300px;
-        overflow-y: scroll;
+        overflow-y: auto;
         .product {
           height: 50px;
           margin-bottom: 5px;
@@ -180,7 +180,7 @@
     }
     .list {
       height: calc(100% - 30px);
-      overflow-y: scroll;
+      overflow-y: auto;
 
       .product {
         clear: both;

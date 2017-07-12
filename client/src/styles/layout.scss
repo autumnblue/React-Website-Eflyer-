@@ -38,7 +38,7 @@
   left: 0;
   width: $left-panel-width;
   height: 100vh;
-  overflow-y: scroll;
+  overflow-y: auto;
   background: -webkit-gradient(linear,left top,right top,color-stop(93%,$left-panel-bgcolor1),color-stop(100%,$left-panel-bgcolor2));
   background: -webkit-linear-gradient(left,$left-panel-bgcolor1 93%,$left-panel-bgcolor2 100%);
   background: -o-linear-gradient(left,$left-panel-bgcolor1 93%,$left-panel-bgcolor2 100%);
@@ -54,11 +54,11 @@
   position: relative;
   margin-left: $left-panel-width;
   height: 100vh;
-  overflow-y: scroll;
+  overflow-y: auto;
   .contents {
     padding: 15px 15px 50px 15px;
     height: 100%;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 }
 .sidebar-minified {
