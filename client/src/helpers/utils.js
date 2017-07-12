@@ -150,7 +150,7 @@ export const createCancellableApiReducer = (actionTypes, storeResponse = false, 
           actionsInProgress: _.without(state.actionsInProgress, action.id)
         };
       case failureType:
-        if (state.actionsInProgress.indexOf(acton.id) === -1) {
+        if (state.actionsInProgress.indexOf(action.id) === -1) {
           return state;
         }
         return {
