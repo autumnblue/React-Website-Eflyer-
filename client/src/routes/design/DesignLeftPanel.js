@@ -108,7 +108,7 @@ class DesignLeftPanel extends Component {
                     {
                       frontCovers.map((cover) =>
                         <div key={cover.title} title={cover.title} className={cover.title === selectedFrontCover ? 'selected' : ''}>
-                          <img src={cover.thumbnail} data-id={cover.title} onClick={this.onFrontCoverSelect}/>
+                          <img src={utils.fixLocalImageUrl(cover.thumbnail)} data-id={cover.title} onClick={this.onFrontCoverSelect}/>
                         </div>
                       )
                     }
@@ -125,7 +125,7 @@ class DesignLeftPanel extends Component {
                     {
                       insideCovers.map((cover) =>
                         <div key={cover.title} title={cover.title} className={cover.title === selectedInsideCover ? 'selected' : ''}>
-                          <img src={cover.thumbnail} data-id={cover.title} onClick={this.onInsideCoverSelect}/>
+                          <img src={utils.fixLocalImageUrl(cover.thumbnail)} data-id={cover.title} onClick={this.onInsideCoverSelect}/>
                         </div>
                       )
                     }
