@@ -163,7 +163,7 @@ class Home extends Component {
                   <div id="use-previous-flyer" onClick={this.onUsePreviousClick}>
                     {
                       saveFlyerApi.status === consts.API_LOADING ?
-                        <img src="img/loading1.gif"/> : 'USE PREVIOUS FLYER'
+                        <img src={utils.localImg('/img/loading1.gif')}/> : 'USE PREVIOUS FLYER'
                     }
                   </div>
                   : null
@@ -171,7 +171,7 @@ class Home extends Component {
               <div id="create-new-flyer" onClick={this.onCreateNewClick}>
                 {
                   createFlyerApi.status === consts.API_LOADING ?
-                    <img src="img/loading1.gif"/> : 'CREATE NEW FLYER'
+                    <img src={utils.localImg('/img/loading1.gif')}/> : 'CREATE NEW FLYER'
                 }
               </div>
             </div>

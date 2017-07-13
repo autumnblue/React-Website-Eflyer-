@@ -10,7 +10,7 @@ export default class LoadingScreen extends Component {
         <div id="page-loading" className="page">
           <div className="contents">
             <div className="logo">
-              <img src="img/logo-blue-md.png" alt="E-Flyer"/>
+              <img src={utils.localImg('/img/logo-blue-md.png')} alt="E-Flyer"/>
               <h1>Welcome to E-Flyer!</h1>
             </div>
             <Loading type="spin"className="spinner"/>

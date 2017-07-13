@@ -206,8 +206,11 @@ export const currency = (price) => (
  * @param   imgUrl            string
  * @return  fixed image url   string
  */
-export const fixLocalImageUrl = (imgUrl) => {
-  if (imgUrl && imgUrl[0] === '/') {
+export const localImg = (imgUrl) => {
+  if (imgUrl && imgUrl.substring(0, 4).toLowerCase() !== 'http' && imgUrl.substring(0, 2) !== '//') {
+    if (imgUrl[0] === '/') {
+      return config.APP_BASE_URL + imgUrl.substring(1);
+    }
     return config.APP_BASE_URL + imgUrl;
   }
 };

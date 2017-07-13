@@ -11,6 +11,6 @@ export default {
   API_HOST,
   API_URL: API_HOST + (process.env.API_PATH || '/api/v1'),
 
-  APP_BASE_URL: process.env.APP_BASE_URL || '/', // Update when the app is not hosted on the web server root path
+  APP_BASE_URL: (process.env.APP_BASE_URL && process.env.APP_BASE_URL !== '/' ? process.env.APP_BASE_URL : '') + '/',
 
 };

@@ -16,7 +16,7 @@ export default class LeftPanel extends Component {
       <aside id="left-panel">
         <div className="logo">
           <a href="#/">
-            <img src="img/logo-white-md.png"/>
+            <img src={utils.localImg('/img/logo-white-md.png')}/>
           </a>
         </div>
         <div className="minify-toggle" onClick={this.toggle}>

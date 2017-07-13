@@ -16,7 +16,7 @@ export default class SessionExpired extends Component {
       <div id="page-session-expired" className="page animated bounceIn">
         <div className="contents">
           <div className="logo">
-            <img src="img/logo-blue-md.png" alt="E-Flyer"/>
+            <img src={utils.localImg('/img/logo-blue-md.png')} alt="E-Flyer"/>
           </div>
           <div className="alert-danger margin-top-50 padding-20">
             <h3>Session has been expired. Re-authentication is needed.</h3>
